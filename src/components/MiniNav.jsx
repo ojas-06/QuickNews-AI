@@ -1,4 +1,8 @@
-export default function MiniNav({ category, setCategory }) {
+import { useContext } from 'react';
+import { News } from '../store/news-api-store';
+
+export default function MiniNav() {
+  const { category, setCategory,setLoading } = useContext(News);
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark mybg-dark mynav"
@@ -23,55 +27,55 @@ export default function MiniNav({ category, setCategory }) {
           <ul className="navbar-nav">
             <li className="nav-item">
               <a
-                className={`mynav-link ${category === 'Business' && 'myactive'}`}
+                className={`mynav-link ${category === 'business' && 'myactive'}`}
                 aria-current="page"
                 href="#"
-                onClick={() => setCategory('Business')}
+                onClick={() => {setLoading(true) ; setCategory('business'); }}
               >
                 Business
               </a>
             </li>
             <li className="nav-item">
-              <a 
-                className={`mynav-link ${category === 'Technology' && 'myactive'}`}
+              <a
+                className={`mynav-link ${category === 'technology' && 'myactive'}`}
                 href="#"
-                onClick={() => setCategory('Technology')}
+              onClick={() => {setLoading(true);setCategory('technology')}}
               >
                 Technology
               </a>
             </li>
             <li className="nav-item">
               <a
-                className={`mynav-link ${category === 'Science' && 'myactive'}`}
+                className={`mynav-link ${category === 'science' && 'myactive'}`}
                 href="#"
-                onClick={() => setCategory('Science')}
+                onClick={() => {setLoading(true);setCategory('science')}}
               >
                 Science
               </a>
             </li>
             <li className="nav-item">
               <a
-                className={`mynav-link ${category === 'Health' && 'myactive'}`}
+                className={`mynav-link ${category === 'health' && 'myactive'}`}
                 href="#"
-                onClick={() => setCategory('Health')}
+                onClick={() => {setLoading(true);setCategory('health')}}
               >
                 Health
               </a>
             </li>
             <li className="nav-item">
               <a
-                className={`mynav-link ${category === 'Sports' && 'myactive'}`}
+                className={`mynav-link ${category === 'sports' && 'myactive'}`}
                 href="#"
-                onClick={() => setCategory('Sports')}
+                onClick={() => {setLoading(true);setCategory('sports')}}
               >
                 Sports
               </a>
             </li>
             <li className="nav-item">
               <a
-                className={`mynav-link ${category === 'Entertainment' && 'myactive'}`}
+                className={`mynav-link ${category === 'entertainment' && 'myactive'}`}
                 href="#"
-                onClick={() => setCategory('Entertainment')}
+                onClick={() => {setLoading(true);setCategory('entertainment')}}
               >
                 Entertainment
               </a>
