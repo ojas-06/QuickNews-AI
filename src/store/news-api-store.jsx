@@ -14,7 +14,12 @@ export const HeadlinesProvider = ({ children }) => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`
+        `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`,
+        {
+          headers: {
+            'User-Agent': 'Mozilla/5.0', // some APIs require this
+          },
+        }
       );
       if (!response.ok) throw new Error('Network response was not ok');
 
@@ -56,7 +61,12 @@ export const NewsProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://newsapi.org/v2/everything?q=${category}&apiKey=${apiKey}`
+          `https://newsapi.org/v2/everything?q=${category}&apiKey=${apiKey}`,
+          {
+            headers: {
+              'User-Agent': 'Mozilla/5.0', // some APIs require this
+            },
+          }
         );
         if (!response.ok) throw new Error('Network response was not ok');
 

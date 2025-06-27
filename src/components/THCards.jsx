@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 
 export default function THCards({ articles }) {
+  if (!articles) {
+    console.log('thcards error');
+    return;
+  }
   return (
     <>
       {articles.map((article) => (

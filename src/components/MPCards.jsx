@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 export default function MPCards({ articles }) {
+  if (!articles) {
+    console.log('mpcards error');
+    return;
+  }
   return (
     <>
       {articles.map((article) => (
@@ -29,12 +33,12 @@ export default function MPCards({ articles }) {
                   </cite>
                 </figcaption>
                 {/* <Button variant = 'outlined'> */}
-                  <Link
-                    to={`/view/news/${encodeURIComponent(article.title.trim().split(' ').join('-'))}`}
-                    className="btn btn-primary mybtn"
-                  >
-                    View
-                  </Link>
+                <Link
+                  to={`/view/news/${encodeURIComponent(article.title.trim().split(' ').join('-'))}`}
+                  className="btn btn-primary mybtn"
+                >
+                  View
+                </Link>
                 {/* </Button> */}
               </div>
             </div>
