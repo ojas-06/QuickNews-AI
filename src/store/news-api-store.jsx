@@ -18,11 +18,12 @@ export const HeadlinesProvider = ({ children }) => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `https://newsapi.org/v2/top-headlines?country=us`,
+        `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us`,
         {
           headers: {
             'X-Api-Key': import.meta.env.VITE_NEWS_API_KEY,
             'User-Agent': 'Mozilla/5.0',
+            Origin: 'https://quicknewsai.netlify.app/',
           },
         }
       );
@@ -66,11 +67,12 @@ export const NewsProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://newsapi.org/v2/everything?q=${category}`,
+          `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?q=${category}`,
           {
             headers: {
               'X-Api-Key': import.meta.env.VITE_NEWS_API_KEY,
               'User-Agent': 'Mozilla/5.0',
+              Origin: 'https://quicknewsai.netlify.app/',
             },
           }
         );
