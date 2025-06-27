@@ -7,7 +7,7 @@ import Footer from './components/Footer.jsx';
 import NewsContainer from './components/NewsContainer.jsx';
 import HeadlineView from './components/HeadlineView.jsx';
 import ArticleView from './components/ArticleView.jsx';
-import { HeadlinesProvider } from './store/news-api-store.jsx';
+import { HeadlinesProvider, NewsProvider } from './store/news-api-store.jsx';
 
 const router = createBrowserRouter([
   {
@@ -24,13 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/view/headline/:encodedUrl',
-        element: (
-          <>
-            <HeadlinesProvider>
-              <HeadlineView />
-            </HeadlinesProvider>
-          </>
-        ),
+        element: <HeadlineView />,
       },
       {
         path: '/view/news/:encodedUrl',
@@ -42,11 +36,15 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   // <StrictMode>
-  <RouterProvider router={router}></RouterProvider>
-  // {/* </StrictMode> */}
+    <NewsProvider>
+      <HeadlinesProvider>
+        <RouterProvider router={router} />
+      </HeadlinesProvider>
+    </NewsProvider>
+  // </StrictMode>
 );
 
-//API key 920161e1ad514c5aa03490168f76c95e
+
 //API return object
 // {
 //   "source": {

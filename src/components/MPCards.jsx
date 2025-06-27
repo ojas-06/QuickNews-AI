@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-
+import Button from '@mui/material/Button';
 export default function MPCards({ articles }) {
   return (
     <>
@@ -20,7 +20,7 @@ export default function MPCards({ articles }) {
             <div className="col-md-8">
               <div className="card-body">
                 <h5 className="card-title">{`${article.title}`}</h5>
-                <p className="card-text">{`${article.content}`}</p>
+                <p className="card-text">{`${article.description}`}</p>
 
                 <figcaption className="blockquote-footer inline">
                   <cite title="Source Title">
@@ -28,13 +28,14 @@ export default function MPCards({ articles }) {
                     {`${article.publishedAt.split('T')[1].split('Z')[0]}`}
                   </cite>
                 </figcaption>
-
-                <Link
-                  to={`/view/news/${encodeURIComponent(article.title.trim().split(' ').join('-'))}`}
-                  className="btn btn-primary mybtn"
-                >
-                  View
-                </Link>
+                {/* <Button variant = 'outlined'> */}
+                  <Link
+                    to={`/view/news/${encodeURIComponent(article.title.trim().split(' ').join('-'))}`}
+                    className="btn btn-primary mybtn"
+                  >
+                    View
+                  </Link>
+                {/* </Button> */}
               </div>
             </div>
           </div>

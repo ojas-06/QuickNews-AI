@@ -16,9 +16,9 @@ export default function THCards({ articles }) {
           />
           <div className="card-body">
             <h5 className="card-title">{`${article.title}`}</h5>
-            <p className="card-text">{`${article.content}`}</p>
+            <p className="card-text">{`${article.description}`}</p>
             <Link
-              to={`/view/headline/${encodeURIComponent(article.title.trim().split(' ').join('-'))}`}
+              to={`/view/headline/${encodeURIComponent(article.url)}`}
               className="btn btn-primary mybtn"
             >
               View

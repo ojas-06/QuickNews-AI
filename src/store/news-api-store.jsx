@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createContext } from 'react';
+const apiKey = import.meta.env.VITE_NEWS_API_KEY;
 
 export const Headlines = createContext({
   data: [],
@@ -9,21 +10,22 @@ export const Headlines = createContext({
 export const HeadlinesProvider = ({ children }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  let json;
   const fetchData = async () => {
     try {
       const response = await fetch(
-        'https://newsapi.org/v2/top-headlines?country=us&apiKey=920161e1ad514c5aa03490168f76c95e'
+        `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`
       );
       if (!response.ok) throw new Error('Network response was not ok');
 
-      const json = await response.json();
+      json = await response.json();
       setData(json);
     } catch (error) {
       console.error('Fetch error:', error);
     } finally {
       setLoading(false);
       console.log('Headlines Reloaded');
+      localStorage.setItem('headlines', JSON.stringify(json));
     }
   };
 
@@ -54,7 +56,7 @@ export const NewsProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://newsapi.org/v2/everything?q=${category}&apiKey=920161e1ad514c5aa03490168f76c95e`
+          `https://newsapi.org/v2/everything?q=${category}&apiKey=${apiKey}`
         );
         if (!response.ok) throw new Error('Network response was not ok');
 
