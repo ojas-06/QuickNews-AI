@@ -16,9 +16,9 @@ export default function NewsContainer() {
           <MainPage sx={{ flex: '3' }} />
        
       </div>
-      <div className="right">
+      {/* <div className="right">
         <Misc sx={{ flex: '1' }} />
-      </div>
+      </div> */}
     </div>
   );
 }
