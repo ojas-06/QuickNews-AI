@@ -5,6 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Footer from './components/Footer.jsx';
 import NewsContainer from './components/NewsContainer.jsx';
+import HeadlineView from './components/HeadlineView.jsx';
+import ArticleView from './components/ArticleView.jsx';
+import { HeadlinesProvider, NewsProvider } from './store/news-api-store.jsx';
 
 const router = createBrowserRouter([
   {
@@ -19,17 +22,29 @@ const router = createBrowserRouter([
         path: '/summaries',
         Component: Footer,
       },
+      {
+        path: '/view/headline/:encodedUrl',
+        element: <HeadlineView />,
+      },
+      {
+        path: '/view/news/:encodedUrl',
+        element: <ArticleView />,
+      },
     ],
   },
 ]);
 
 createRoot(document.getElementById('root')).render(
   // <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
-  // {/* </StrictMode> */}
+    <NewsProvider>
+      <HeadlinesProvider>
+        <RouterProvider router={router} />
+      </HeadlinesProvider>
+    </NewsProvider>
+  // </StrictMode>
 );
 
-//API key 920161e1ad514c5aa03490168f76c95e
+
 //API return object
 // {
 //   "source": {
