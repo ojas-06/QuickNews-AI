@@ -5,6 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Footer from './components/Footer.jsx';
 import NewsContainer from './components/NewsContainer.jsx';
+import HeadlineView from './components/HeadlineView.jsx';
+import ArticleView from './components/ArticleView.jsx';
+import { HeadlinesProvider } from './store/news-api-store.jsx';
 
 const router = createBrowserRouter([
   {
@@ -19,13 +22,27 @@ const router = createBrowserRouter([
         path: '/summaries',
         Component: Footer,
       },
+      {
+        path: '/view/headline/:encodedUrl',
+        element: (
+          <>
+            <HeadlinesProvider>
+              <HeadlineView />
+            </HeadlinesProvider>
+          </>
+        ),
+      },
+      {
+        path: '/view/news/:encodedUrl',
+        element: <ArticleView />,
+      },
     ],
   },
 ]);
 
 createRoot(document.getElementById('root')).render(
   // <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+  <RouterProvider router={router}></RouterProvider>
   // {/* </StrictMode> */}
 );
 

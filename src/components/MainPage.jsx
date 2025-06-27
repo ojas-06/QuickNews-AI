@@ -6,12 +6,12 @@ import Loading from './Loading';
 import MPCards from './MPCards';
 import THCards from './THCards';
 export default function MainPage() {
-  const { data, loading } = useContext(News);
+  const { news, loading } = useContext(News);
   return (
     <>
       <MiniNav />
       {loading && <Loading />}
-      {!loading && <MPCards articles={data.articles} />}
+      {!loading && <MPCards articles={news.articles} />}
     </>
   );
 }

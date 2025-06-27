@@ -9,51 +9,49 @@ export const Headlines = createContext({
 export const HeadlinesProvider = ({ children }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const fetchData = async () => {
-      console.log('sent request');
-      try {
-        const response = await fetch(
-          'https://newsapi.org/v2/top-headlines?country=us&apiKey=920161e1ad514c5aa03490168f76c95e'
-        );
-        if (!response.ok) throw new Error('Network response was not ok');
 
-        const json = await response.json();
-        setData(json);
-        console.log(json);
-        console.log(data);
-      } catch (error) {
-        console.error('Fetch error:', error);
-      } finally {
-        setLoading(false);
-        console.log('loaded');
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        'https://newsapi.org/v2/top-headlines?country=us&apiKey=920161e1ad514c5aa03490168f76c95e'
+      );
+      if (!response.ok) throw new Error('Network response was not ok');
+
+      const json = await response.json();
+      setData(json);
+    } catch (error) {
+      console.error('Fetch error:', error);
+    } finally {
+      setLoading(false);
+      console.log('Headlines Reloaded');
+    }
+  };
+
+  useEffect(() => {
     fetchData();
-    if (loading) console.log(loading);
-    if (data) console.log(data.articles);
   }, []);
 
   return (
-    <Headlines.Provider value={{ data, loading }}>{children}</Headlines.Provider>
+    <Headlines.Provider value={{ data, loading }}>
+      {children}
+    </Headlines.Provider>
   );
 };
 
 export const News = createContext({
-  data: [],
+  news: [],
   loading: true,
-  setLoading:()=>{},
-  category:'',
-  setCategory: ()=>{},
+  setLoading: () => {},
+  category: '',
+  setCategory: () => {},
 });
 
 export const NewsProvider = ({ children }) => {
-  const [category,setCategory] = useState('business');
-  const [data, setData] = useState(null);
+  const [category, setCategory] = useState('business');
+  const [news, setNews] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
-      console.log('sent news request');
       try {
         const response = await fetch(
           `https://newsapi.org/v2/everything?q=${category}&apiKey=920161e1ad514c5aa03490168f76c95e`
@@ -61,23 +59,20 @@ export const NewsProvider = ({ children }) => {
         if (!response.ok) throw new Error('Network response was not ok');
 
         const json = await response.json();
-        setData(json);
-        console.log(json);
-        console.log(data);
+        setNews(json);
       } catch (error) {
         console.error('Fetch error:', error);
       } finally {
         setLoading(false);
-        console.log('loaded');
+        console.log('NewsReloaded');
       }
     };
     fetchData();
-    if (loading) console.log(loading);
-    if (data) console.log(data.articles);
+    return;
   }, [category]);
 
   return (
-    <News.Provider value={{ data, loading, category,setCategory,setLoading }}>
+    <News.Provider value={{ news, loading, category, setCategory, setLoading }}>
       {children}
     </News.Provider>
   );

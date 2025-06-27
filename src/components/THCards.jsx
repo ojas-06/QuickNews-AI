@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function THCards({ articles }) {
   return (
     <>
@@ -15,9 +17,12 @@ export default function THCards({ articles }) {
           <div className="card-body">
             <h5 className="card-title">{`${article.title}`}</h5>
             <p className="card-text">{`${article.content}`}</p>
-            <a href="#" className="btn btn-primary">
+            <Link
+              to={`/view/headline/${encodeURIComponent(article.title.trim().split(' ').join('-'))}`}
+              className="btn btn-primary mybtn"
+            >
               View
-            </a>
+            </Link>
           </div>
         </div>
       ))}
