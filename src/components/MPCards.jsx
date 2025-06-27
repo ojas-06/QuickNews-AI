@@ -1,10 +1,6 @@
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 export default function MPCards({ articles }) {
-  if (!articles) {
-    console.log('mpcards error');
-    return;
-  }
   return (
     <>
       {articles.map((article) => (

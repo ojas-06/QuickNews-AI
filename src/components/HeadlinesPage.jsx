@@ -7,10 +7,10 @@ import THCards from './THCards';
 import { Headlines } from '../store/news-api-store';
 
 export default function HeadlinesPage() {
+  
   const { data, loading } = useContext(Headlines);
-  if (!data.articles) {
-    console.log('hperror');
-    return;
+  if (loading || !data || !data.articles) {
+    return <Loading />;
   }
   return (
     <div className="topHeadlines">

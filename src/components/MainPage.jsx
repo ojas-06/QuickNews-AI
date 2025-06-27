@@ -7,10 +7,9 @@ import MPCards from './MPCards';
 import THCards from './THCards';
 export default function MainPage() {
   const { news, loading } = useContext(News);
-  if (!news.articles) {
-    console.log('nperror');
-    return;
-  }
+  if (loading || !news || !news.articles) {
+      return <Loading />;
+    }
   return (
     <>
       <MiniNav />

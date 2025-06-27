@@ -6,7 +6,11 @@ export const Headlines = createContext({
   data: [],
   loading: true,
 });
-
+// {
+//   headers: {
+//     'User-Agent': 'Mozilla/5.0', // some APIs require this
+//   },
+// }
 export const HeadlinesProvider = ({ children }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -14,10 +18,11 @@ export const HeadlinesProvider = ({ children }) => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`,
+        `https://newsapi.org/v2/top-headlines?country=us`,
         {
           headers: {
-            'User-Agent': 'Mozilla/5.0', // some APIs require this
+            'X-Api-Key': import.meta.env.VITE_NEWS_API_KEY,
+            'User-Agent': 'Mozilla/5.0',
           },
         }
       );
@@ -61,10 +66,11 @@ export const NewsProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://newsapi.org/v2/everything?q=${category}&apiKey=${apiKey}`,
+          `https://newsapi.org/v2/everything?q=${category}`,
           {
             headers: {
-              'User-Agent': 'Mozilla/5.0', // some APIs require this
+              'X-Api-Key': import.meta.env.VITE_NEWS_API_KEY,
+              'User-Agent': 'Mozilla/5.0',
             },
           }
         );
