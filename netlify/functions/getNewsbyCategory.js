@@ -1,6 +1,7 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
-exports.handler = async function (event, context) {
+export async function handler(event, context) {
+  const API_KEY = process.env.NEWS_API_KEY;
   const category = event.queryStringParameters.category || 'business';
 
   try {
@@ -8,7 +9,7 @@ exports.handler = async function (event, context) {
       `https://newsapi.org/v2/everything?q=${encodeURIComponent(category)}`,
       {
         headers: {
-          'X-Api-Key': process.env.NEWS_API_KEY, // Use plain key name in Netlify
+          'X-Api-Key': API_KEY
         },
       }
     );

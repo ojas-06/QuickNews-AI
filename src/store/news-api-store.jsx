@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createContext } from 'react';
 const apiKey = import.meta.env.VITE_NEWS_API_KEY;
-console.log('🔑 API Key:', import.meta.env.VITE_NEWS_API_KEY);
+
 export const Headlines = createContext({
   data: [],
   loading: true,
@@ -110,7 +110,7 @@ export const NewsProvider = ({ children }) => {
       try {
         setLoading(true);
         const response = await fetch(
-          `/.netlify/functions/getNewsByCategory?category=${encodeURIComponent(category)}`
+          `/.netlify/functions/getNewsbyCategory?category=${encodeURIComponent(category)}`
         );
         if (!response.ok) throw new Error('Failed to fetch news');
 

@@ -1,6 +1,7 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
-exports.handler = async function (event, context) {
+export async function handler(event, context) {
+  console.log('working');
   const API_KEY = process.env.NEWS_API_KEY;
 
   try {
@@ -32,4 +33,4 @@ exports.handler = async function (event, context) {
       body: JSON.stringify({ error: err.message }),
     };
   }
-};
+}
