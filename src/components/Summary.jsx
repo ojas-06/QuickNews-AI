@@ -1,6 +1,8 @@
-import HeadlinesPage from "./HeadlinesPage";
+import HeadlinesPage from './HeadlinesPage';
+import { useState } from 'react';
 
 export default function Summary() {
+  const [rerender, setRerender] = useState(false);
   const summaries = JSON.parse(localStorage.getItem('mySummaries'));
   if (!summaries)
     return (
@@ -9,9 +11,7 @@ export default function Summary() {
           <HeadlinesPage />
         </div>
         <div className="middle" style={{ flex: 3 }}>
-          <p className="mt-4 ms-4">
-            Nothing to show here
-          </p>
+          <p className="mt-4 ms-4">Nothing to show here</p>
         </div>
       </div>
     );
@@ -37,6 +37,16 @@ export default function Summary() {
             </div>
           </>
         ))}
+        <button
+          class="btn btn-danger mybtn px-3"
+          type="button"
+          onClick={() => {
+            localStorage.removeItem('mySummaries');
+            setRerender((prev) => !prev);
+          }}
+        >
+          Clear Summaries
+        </button>
       </div>
     </div>
   );

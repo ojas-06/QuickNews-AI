@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import HeadlinesPage from './HeadlinesPage';
 import { renderToString } from 'react-dom/server';
 
 import { GoogleGenAI } from '@google/genai';
+import { useNavigate } from 'react-router-dom';
 const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
 
 async function summarize({ content, setLoading, setSummary }) {
@@ -50,7 +51,12 @@ function processResult(title, summary) {
     p3: p3,
   };
   let oldSum = JSON.parse(localStorage.getItem('mySummaries')) || [];
-  localStorage.setItem('mySummaries', JSON.stringify([summaryObj, ...oldSum]));
+  if (!oldSum.some((i) => i.title === summaryObj.title))
+    localStorage.setItem(
+      'mySummaries',
+      JSON.stringify([summaryObj, ...oldSum])
+    );
+
   return (
     <div className="border-bottom">
       <h4 className="ms-4">Summary</h4>
@@ -65,6 +71,12 @@ function processResult(title, summary) {
 }
 
 export default function DetailDisplay({ article }) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!article) navigate('/');
+  }, [article, navigate]);
+
+  if (!article) return null;
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(0);
   return (

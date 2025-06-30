@@ -4,8 +4,8 @@ import Box from '@mui/material/Box';
 
 export default function Loading() {
   return (
-    <center className='loading'>
+    <div className='loading'>
       <CircularProgress />
-    </center>
+    </div>
   );
 }

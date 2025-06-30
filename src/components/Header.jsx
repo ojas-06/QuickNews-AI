@@ -1,12 +1,18 @@
-import { Link } from "react-router-dom";
+import { useRef, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { News } from '../store/news-api-store';
 
 export default function Header() {
+  const { setCategory } = useContext(News);
+  const searchField = useRef(null);
   return (
     <header className="p-3 text-bg-dark fixed">
       <div className="container">
         <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-          <span className="fs-4 me-5">QuickNews AI</span>
-          <ul className="nav col-12 col-lg-auto me-lg-auto ms-lg-auto mb-2 justify-content-center mb-md-0">
+          <span className="fs-3 me-5">
+            N<span className="fs-5">EWS</span>.AI
+          </span>
+          <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             <li>
               <Link to="/" className="nav-link px-2 text-white">
                 Home
@@ -14,7 +20,7 @@ export default function Header() {
             </li>
             <li>
               <Link to="/summaries" className="nav-link px-2 text-white">
-                My Summaries
+                Summaries
               </Link>
             </li>
           </ul>
@@ -27,10 +33,16 @@ export default function Header() {
               className="form-control form-control-dark text-bg-dark"
               aria-label="Search"
               name="search"
+              ref={searchField}
+              autocomplete="off"
             />
           </form>
           <div className="text-end">
-            <button type="button" className="btn btn-outline-light me-2">
+            <button
+              type="button"
+              className="btn btn-outline-light me-2"
+              onClick={() => setCategory(searchField.current.value)}
+            >
               Search
             </button>
           </div>

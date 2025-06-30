@@ -1,7 +1,6 @@
 import fetch from 'node-fetch';
 
 export async function handler(event, context) {
-  console.log('working');
   const API_KEY = process.env.NEWS_API_KEY;
 
   try {

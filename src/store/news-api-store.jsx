@@ -25,7 +25,6 @@ export const HeadlinesProvider = ({ children }) => {
       console.error('Fetch error:', error);
     } finally {
       setLoading(false);
-      console.log('Headlines Reloaded');
       localStorage.setItem('headlines', JSON.stringify(json));
     }
   };
