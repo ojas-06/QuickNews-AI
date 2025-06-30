@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { createContext } from 'react';
 const apiKey = import.meta.env.VITE_NEWS_API_KEY;
 
+
+
 export const Headlines = createContext({
   data: [],
   loading: true,

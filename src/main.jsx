@@ -8,6 +8,8 @@ import NewsContainer from './components/NewsContainer.jsx';
 import HeadlineView from './components/HeadlineView.jsx';
 import ArticleView from './components/ArticleView.jsx';
 import { HeadlinesProvider, NewsProvider } from './store/news-api-store.jsx';
+import DetailDisplay from './components/DetailDisplay.jsx';
+import Summary from './components/Summary.jsx';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/summaries',
-        Component: Footer,
+        element: <Summary />,
       },
       {
         path: '/view/headline/:encodedUrl',
@@ -30,20 +32,23 @@ const router = createBrowserRouter([
         path: '/view/news/:encodedUrl',
         element: <ArticleView />,
       },
+      {
+        path: '/viewArticle',
+        element: <DetailDisplay />,
+      },
     ],
   },
 ]);
 
 createRoot(document.getElementById('root')).render(
   // <StrictMode>
-    <NewsProvider>
-      <HeadlinesProvider>
-        <RouterProvider router={router} />
-      </HeadlinesProvider>
-    </NewsProvider>
+  <NewsProvider>
+    <HeadlinesProvider>
+      <RouterProvider router={router} />
+    </HeadlinesProvider>
+  </NewsProvider>
   // </StrictMode>
 );
-
 
 //API return object
 // {
