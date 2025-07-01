@@ -25,20 +25,18 @@ export default function Summary() {
           Summaries
         </h3>
         {summaries.map((s) => (
-          <>
-            <div className="border-bottom">
-              <h4 className="ms-4 mt-4">{s.title}</h4>
-              <ul className="mb-4 ms-4 artP">
-                <li>{s.p1}</li>
-                <li>{s.p2}</li>
-                <li>{s.p3}</li>
-                <p className=" mt-4"></p>
-              </ul>
-            </div>
-          </>
+          <div className="border-bottom" key={s.title}>
+            <h4 className="ms-4 mt-4">{s.title}</h4>
+            <ul className="mb-4 ms-4 artP">
+              <li>{s.p1}</li>
+              <li>{s.p2}</li>
+              <li>{s.p3}</li>
+              <p className=" mt-4"></p>
+            </ul>
+          </div>
         ))}
         <button
-          class="btn btn-danger mybtn px-3"
+          className="btn btn-danger mybtn px-3"
           type="button"
           onClick={() => {
             localStorage.removeItem('mySummaries');

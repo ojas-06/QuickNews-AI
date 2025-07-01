@@ -53,6 +53,7 @@
   background-color: #2a3740;
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+  z-index: 1;
 }
 
 .mybg-dark {
@@ -115,7 +116,7 @@
 }
 
 .newsContainer {
-  margin-top: 72px;
+  margin-top: 64px;
   background-color: rgb(50, 50, 50);
   height: 100vh;
   width: 100%;
@@ -174,4 +175,9 @@
 
 .summarizeBtn {
   background-color: #2a3740 !important;
+}
+
+.toggleBtn{
+  transform: scale(0.7);
+  margin-top: -10px;
 }

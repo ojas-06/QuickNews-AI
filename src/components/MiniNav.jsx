@@ -10,7 +10,7 @@ export default function MiniNav() {
     >
       <div className="container-fluid">
         <button
-          className="navbar-toggler"
+          className="navbar-toggler toggleBtn"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarsExample08"
@@ -30,7 +30,10 @@ export default function MiniNav() {
                 className={`mynav-link ${category === 'business' && 'myactive'}`}
                 aria-current="page"
                 href="#"
-                onClick={() => {setLoading(true) ; setCategory('business'); }}
+                onClick={() => {
+                  setLoading(true);
+                  setCategory('business');
+                }}
               >
                 Business
               </a>
@@ -39,7 +42,10 @@ export default function MiniNav() {
               <a
                 className={`mynav-link ${category === 'technology' && 'myactive'}`}
                 href="#"
-              onClick={() => {setLoading(true);setCategory('technology')}}
+                onClick={() => {
+                  setLoading(true);
+                  setCategory('technology');
+                }}
               >
                 Technology
               </a>
@@ -48,7 +54,10 @@ export default function MiniNav() {
               <a
                 className={`mynav-link ${category === 'science' && 'myactive'}`}
                 href="#"
-                onClick={() => {setLoading(true);setCategory('science')}}
+                onClick={() => {
+                  setLoading(true);
+                  setCategory('science');
+                }}
               >
                 Science
               </a>
@@ -57,7 +66,10 @@ export default function MiniNav() {
               <a
                 className={`mynav-link ${category === 'health' && 'myactive'}`}
                 href="#"
-                onClick={() => {setLoading(true);setCategory('health')}}
+                onClick={() => {
+                  setLoading(true);
+                  setCategory('health');
+                }}
               >
                 Health
               </a>
@@ -66,7 +78,10 @@ export default function MiniNav() {
               <a
                 className={`mynav-link ${category === 'sports' && 'myactive'}`}
                 href="#"
-                onClick={() => {setLoading(true);setCategory('sports')}}
+                onClick={() => {
+                  setLoading(true);
+                  setCategory('sports');
+                }}
               >
                 Sports
               </a>
@@ -75,7 +90,10 @@ export default function MiniNav() {
               <a
                 className={`mynav-link ${category === 'entertainment' && 'myactive'}`}
                 href="#"
-                onClick={() => {setLoading(true);setCategory('entertainment')}}
+                onClick={() => {
+                  setLoading(true);
+                  setCategory('entertainment');
+                }}
               >
                 Entertainment
               </a>
