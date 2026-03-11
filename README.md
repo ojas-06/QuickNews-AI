@@ -26,46 +26,20 @@ After deployment, directly fetching article pages from the browser caused **CORS
 ---
 
 ## Project Structure
-# QuickNews-AI (News.AI)
 
-A news web app that fetches live headlines from a **News REST API** and generates a **3-point AI summary** for each article.
-
-After deployment, directly fetching article pages from the browser caused **CORS blocks** (cross-origin restrictions). This project fixes that by moving article URL fetching to a **server-side proxy** implemented using **Netlify Functions**.
-
-**Live Demo:** https://quicknews-ai.netlify.app  
-**GitHub:** (this repo)
-
----
-
-## Features
-- Fetches latest headlines (title + URL) via a News REST API
-- Extracts article text from the source URL (content parsing) for summarization
-- Generates **3-bullet AI summaries** using an AI API
-- Solves production **CORS issues** using a **Netlify Functions proxy** (browser → function → article URL)
-- Responsive UI with separate components for headlines + article details
-
----
-
-## Tech Stack
-- **Frontend:** React (Vite), HTML, CSS
-- **Serverless Proxy:** Netlify Functions
-- **APIs:** News API (headlines), AI API (summarization)
-
----
-
-## Project Structure
+```text
 .
 ├── netlify/
-│ └── functions/
+│   └── functions/
 ├── public/
 ├── src/
-│ ├── assets/
-│ ├── components/
-│ ├── store/
-│ │ └── news-api-store.jsx
-│ ├── App.css
-│ ├── App.jsx
-│ └── main.jsx
+│   ├── assets/
+│   ├── components/
+│   ├── store/
+│   │   └── news-api-store.jsx
+│   ├── App.css
+│   ├── App.jsx
+│   └── main.jsx
 ├── .gitignore
 ├── .prettierrc
 ├── README.md
@@ -76,7 +50,7 @@ After deployment, directly fetching article pages from the browser caused **CORS
 ├── package-lock.json
 ├── package.json
 └── vite.config.js
-
+```
 ---
 
 ## Why Netlify Functions (CORS Fix)
