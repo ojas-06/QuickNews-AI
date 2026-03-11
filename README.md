@@ -1,12 +1,93 @@
-# React + Vite
+# QuickNews-AI (News.AI)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A news web app that fetches live headlines from a **News REST API** and generates a **3-point AI summary** for each article.
 
-Currently, two official plugins are available:
+After deployment, directly fetching article pages from the browser caused **CORS blocks** (cross-origin restrictions). This project fixes that by moving article URL fetching to a **server-side proxy** implemented using **Netlify Functions**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Live Demo:** https://quicknews-ai.netlify.app  
+**GitHub:** (this repo)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+- Fetches latest headlines (title + URL) via a News REST API
+- Extracts article text from the source URL (content parsing) for summarization
+- Generates **3-bullet AI summaries** using an AI API
+- Solves production **CORS issues** using a **Netlify Functions proxy** (browser → function → article URL)
+- Responsive UI with separate components for headlines + article details
+
+---
+
+## Tech Stack
+- **Frontend:** React (Vite), HTML, CSS
+- **Serverless Proxy:** Netlify Functions
+- **APIs:** News API (headlines), AI API (summarization)
+
+---
+
+## Project Structure
+# QuickNews-AI (News.AI)
+
+A news web app that fetches live headlines from a **News REST API** and generates a **3-point AI summary** for each article.
+
+After deployment, directly fetching article pages from the browser caused **CORS blocks** (cross-origin restrictions). This project fixes that by moving article URL fetching to a **server-side proxy** implemented using **Netlify Functions**.
+
+**Live Demo:** https://quicknews-ai.netlify.app  
+**GitHub:** (this repo)
+
+---
+
+## Features
+- Fetches latest headlines (title + URL) via a News REST API
+- Extracts article text from the source URL (content parsing) for summarization
+- Generates **3-bullet AI summaries** using an AI API
+- Solves production **CORS issues** using a **Netlify Functions proxy** (browser → function → article URL)
+- Responsive UI with separate components for headlines + article details
+
+---
+
+## Tech Stack
+- **Frontend:** React (Vite), HTML, CSS
+- **Serverless Proxy:** Netlify Functions
+- **APIs:** News API (headlines), AI API (summarization)
+
+---
+
+## Project Structure
+.
+├── netlify/
+│ └── functions/
+├── public/
+├── src/
+│ ├── assets/
+│ ├── components/
+│ ├── store/
+│ │ └── news-api-store.jsx
+│ ├── App.css
+│ ├── App.jsx
+│ └── main.jsx
+├── .gitignore
+├── .prettierrc
+├── README.md
+├── eslintfile.txt
+├── eslintrcjson.txt
+├── index.html
+├── netlify.toml
+├── package-lock.json
+├── package.json
+└── vite.config.js
+
+---
+
+## Why Netlify Functions (CORS Fix)
+
+Locally, fetching article content directly from the client may work for some sources, but after deployment browsers block many cross-origin requests due to **CORS** policies on publisher websites.
+
+**Fix used here:**
+- Frontend sends the target article URL to a Netlify Function
+- The function fetches the article server-side and returns extracted text
+- Frontend uses that text to generate the AI summary
+
+This avoids browser CORS restrictions while keeping the UI simple.
+
+---
